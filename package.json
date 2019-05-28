@@ -1,0 +1,35 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "An clone of the online encyclopedia Wikipedia.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "export NODE_ENV=test&& jasmine",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sean-p-ryan/blocipedia-node.git"
+  },
+  "author": "Sean Ryan",
+  "license": "MIT",
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "install": "^0.12.2",
+    "jasmine": "^3.4.0",
+    "npm": "^6.9.0",
+    "request": "^2.83.0"
+  },
+  "bugs": {
+    "url": "https://github.com/sean-p-ryan/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/sean-p-ryan/blocipedia-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^5.0.0",
+    "express": "^4.17.0",
+    "jasmine": "^3.4.0",
+    "nodemon": "^1.19.0",
+    "sequelize": "^5.8.6"
+  }
+}
