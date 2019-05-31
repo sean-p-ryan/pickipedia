@@ -1,15 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const staticController = require("../controllers/staticController");
 
-router.get("/", (req, res, next) => {
-  console.log("Got a get request")
-  res.send("Test");
-});
-
-router.get("/users/signup", (req, res, next) => {
-  console.log("Got a get request")
-  res.send("Welcome to Blocipedia");
-  res.status(404).send("Sorry, can't find that.")
-});
+router.get("/", staticController.index);
 
 module.exports = router;
