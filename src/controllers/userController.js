@@ -1,5 +1,5 @@
-// const userQueries = require("../db/queries.users.js");
-// const passport = require("passport");
+const userQueries = require("../db/queries.users.js");
+const passport = require("passport");
 // const sgMail = require('@sendgrid/mail');
 // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -35,8 +35,8 @@ module.exports = {
                         to: newUser.email,
                         from: 'test@blocipedia.com',
                         subject: 'Welcome to Blocipedia',
-                        text: 'where you can collaborate and share',
-                        html: '<strong>Looking forward to see your stuff!</strong>',
+                        text: 'The best damn pedia on the intertubes.',
+                        html: '<strong>Show us your stuff!!</strong>',
                     };
                     sgMail.send(msg);
                 })
