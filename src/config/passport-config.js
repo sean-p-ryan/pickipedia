@@ -1,50 +1,69 @@
-// #1
-
+const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const User = require("../db/models").User;
-const authHelper = require("../auth/helpers");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
-  init(app){
+  signup(req, res, next){
+    res.render("users/signup");
+  },
+  create(req, res, next){
+  //#1
+  console.log(req.body.username)
+    let newUser = {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      passwordConfirmation: req.body.passwordConfirmation
+    };
+  // #2
+    userQueries.createUser(newUser, (err, user) => {
+      if(err){
+        req.flash("error", err);
+        res.redirect("/users/signup");
+      } else {
 
-// #2
-    app.use(passport.initialize());
-    app.use(passport.session());
+  // #3
+        passport.authenticate("local")(req, res, () => {
+          req.flash("notice", "You've successfully signed in!");
+          res.redirect("/");
 
-// #3
-    passport.use(new LocalStrategy({
-      usernameField: "email"
-    }, (email, password, done) => {
-      User.findOne({
-        where: { email }
-      })
-      .then((user) => {
+          const sgMail = require('@sendgrid/mail');
 
-// #4
-        if (!user || !authHelper.comparePass(password, user.password)) {
-          return done(null, false, { message: "Invalid email or password" });
-        }
-// #5
-        return done(null, user);
-      })
-    }));
+          sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// #6
-    passport.serializeUser((user, callback) => {
-      callback(null, user.id);
+          const msg = {
+            to: newUser.email,
+            from: 'test@blocipedia.com',
+            subject: 'Welcome to Blocipedia',
+            text: 'where you can collaborate and share',
+            html: '<strong>Looking forward to see your stuff!</strong>',
+          };
+          sgMail.send(msg);
+        })
+      }
     });
+  },
 
-// #7
-    passport.deserializeUser((id, callback) => {
-      User.findById(id)
-      .then((user) => {
-        callback(null, user);
-      })
-      .catch((err =>{
-        callback(err, user);
-      }))
+  signInForm(req, res, next){
+      res.render("users/signin");
+  },
 
-    });
+  signIn(req, res, next){
+   passport.authenticate("local")(req, res, function () {
+     if(!req.user){
+       req.flash("notice", "Sign in failed. Please try again.")
+       res.redirect("/users/signin");
+     } else {
+       req.flash("notice", "You've successfully signed in!");
+       res.redirect("/");
+     }
+   })
+ },
+
+ signOut(req, res, next){
+    req.logout();
+    req.flash("notice", "You've successfully signed out!");
+    res.redirect("/");
   }
 }
