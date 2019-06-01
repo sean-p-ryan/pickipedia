@@ -15,6 +15,7 @@ function handleValidateUsers(req, res, next, method, validation) {
 module.exports = {
 
 validateUsers(req, res, next){
+  console.log("in validateUsers")
   return handleValidateUsers(req, res, next, 'POST', () => {
     req.checkBody("username", "must be at least two characters in length").isLength({min: 2});
     req.checkBody("email", "must be valid").isEmail();
