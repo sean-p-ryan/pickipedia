@@ -4,9 +4,10 @@ module.exports = {
 
 // #1
   ensureAuthenticated(req, res, next) {
+    console.log("req.user in ensure authenticated" + req.user);
     if (!req.user){
       req.flash("notice", "You must be signed in to do that.")
-      return res.redirect("/users/signin");
+      return res.redirect("/users/sign_in");
     } else {
       next();
     }

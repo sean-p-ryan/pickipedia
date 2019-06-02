@@ -1,7 +1,15 @@
-function handleValidateUsers(req, res, next, method, validation) {
+module.exports = {
+
+  validateUsers(req, res, next) {
     if(req.method === "POST") {
-      validation();
+      console.log("in validate users")
+      console.log("Req.user" + " is " + req.user);
+// #1
+      req.checkBody("email", "must be valid").isEmail();
+      req.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
+      req.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
     }
+
     const errors = req.validationErrors();
 
     if (errors) {
@@ -10,18 +18,5 @@ function handleValidateUsers(req, res, next, method, validation) {
     } else {
       return next();
     }
-}
-
-module.exports = {
-
-validateUsers(req, res, next){
-  console.log("in validateUsers")
-  return handleValidateUsers(req, res, next, 'POST', () => {
-    req.checkBody("username", "must be at least two characters in length").isLength({min: 2});
-    req.checkBody("email", "must be valid").isEmail();
-    req.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
-    req.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
-  });
-}
-
+  }
 }

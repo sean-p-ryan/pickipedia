@@ -4,8 +4,8 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = {
-  signup(req, res, next){
-    res.render("users/signup");
+  sign_up(req, res, next){
+    res.render("users/sign_up");
   },
   create(req, res, next){
   //#1
@@ -19,7 +19,7 @@ module.exports = {
     userQueries.createUser(newUser, (err, user) => {
       if(err){
         req.flash("error", err);
-        res.redirect("/users/signup");
+        res.redirect("/users/sign_up");
       } else {
 
   // #3
@@ -45,15 +45,17 @@ module.exports = {
   },
 
   signInForm(req, res, next){
-      res.render("users/signin");
+      res.render("users/sign_in");
   },
 
   signIn(req, res, next){
-      console.log("signIn method.")
+      console.log("sign_in method.")
+
    passport.authenticate("local")(req, res, function () {
+       console.log(req.user);
      if(!req.user){
        req.flash("notice", "Sign in failed. Please try again.")
-       res.redirect("/users/signin");
+       res.redirect("/users/sign_in");
      } else {
        req.flash("notice", "You've successfully signed in!");
        res.redirect("/");
