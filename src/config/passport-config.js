@@ -5,7 +5,6 @@ const authHelper = require("../auth/helpers");
 
 module.exports = {
 
-
     init(app){
 
         app.use(passport.initialize());
@@ -14,10 +13,12 @@ module.exports = {
         passport.use(new LocalStrategy({
             usernameField: "username"
             }, (username, password, done) => {
+              console.log("Username" + username + "Parrword " + password)
                 User.findOne({
                     where: { username }
                 })
                 .then((user) => {
+                  console.log("User " + user) 
                     if (!user || !authHelper.comparePass(password, user.password)) {
                         return done(null, false, { message: "Invalid username or password" });
                     }

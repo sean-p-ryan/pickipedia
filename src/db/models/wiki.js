@@ -1,6 +1,4 @@
-
 'use strict';
-
 module.exports = (sequelize, DataTypes) => {
   var Wiki = sequelize.define('Wiki', {
     title: {
@@ -13,27 +11,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     private: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    userId: {
-      type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: "CASCADE",
-      references: {
-        model: "Users",
-        key: "id",
-        as: "userId"
-      }
-    },
+      defaultValue: false
+    }
   }, {});
-  Wiki.associate = function(models) {
+  Wiki.associate = function (models) {
     // associations can be defined here
-
-  Wiki.belongsTo(models.User, {
-    foreignKey: "userId",
-    onDelete: "CASCADE"
-  });
-
+    Wiki.belongsTo(models.User, {
+      foreignKey: "id",
+      onDelete: "CASCADE"
+    })
   };
   return Wiki;
 };

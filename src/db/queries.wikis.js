@@ -14,7 +14,7 @@ module.exports = {
     },
 
     getAllWikis(callback) {
-
+        console.log("In getAllWikis ")
         return Wiki.all()
         .then((wikis) => {
             callback(null, wikis);

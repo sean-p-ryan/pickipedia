@@ -50,6 +50,7 @@ module.exports = {
 
   signIn(req, res, next){
       console.log("sign_in method.")
+      console.log(req.user);
 
    passport.authenticate("local")(req, res, function () {
        console.log(req.user);
