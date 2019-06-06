@@ -3,7 +3,7 @@ module.exports = {
   validateUsers(req, res, next) {
     if(req.method === "POST") {
       console.log("in validate users")
-      console.log("Req.user" + " is " + req.user);
+      
 // #1
       req.checkBody("email", "must be valid").isEmail();
       req.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
@@ -11,6 +11,7 @@ module.exports = {
     }
 
     const errors = req.validationErrors();
+    console.log("Here are the validation errors " + errors)
 
     if (errors) {
       req.flash("error", errors);

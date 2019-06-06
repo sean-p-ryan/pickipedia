@@ -18,6 +18,7 @@ module.exports = {
   // #2
     userQueries.createUser(newUser, (err, user) => {
       if(err){
+        console.log("Error inside userQueries.createUser " + err);
         req.flash("error", err);
         res.redirect("/users/sign_up");
       } else {
@@ -36,7 +37,7 @@ module.exports = {
             from: 'test@blocipedia.com',
             subject: 'Welcome to Blocipedia',
             text: 'where you can collaborate and share',
-            html: '<strong>Looking forward to see your stuff!</strong>',
+            html: '<strong>Looking forward to seeing your stuff!</strong>',
           };
           sgMail.send(msg);
         })
