@@ -9,7 +9,7 @@
     <% include ../static/partials/navbar.ejs %>
     <main class="container">
         <% include ../static/partials/messages.ejs %>
-        <h1><%= `${user.email}'s profile` %></h1>
+        <h1><%= `${currentUser.username}'s profile` %></h1>
     </main>
     <% include ../static/partials/baseScripts.ejs %>
 </body>

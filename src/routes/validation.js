@@ -1,8 +1,7 @@
 module.exports = {
 
   validateUsers(req, res, next) {
-    if(req.method === "POST") {
-      console.log("in validate users")
+    if(req.method === "POST") {      
       
 // #1
       req.checkBody("email", "must be valid").isEmail();

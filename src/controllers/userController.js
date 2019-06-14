@@ -49,9 +49,7 @@ module.exports = {
       res.render("users/sign_in");
   },
 
-  signIn(req, res, next){
-      console.log("sign_in method.")
-      console.log(req.user);
+  signIn(req, res, next){      
 
    passport.authenticate("local")(req, res, function () {
        console.log(req.user);
@@ -69,7 +67,20 @@ module.exports = {
     req.logout();
     req.flash("notice", "You've successfully signed out!");
     res.redirect("/");
-  }
+  },
+
+  show(req, res, next) {
+    console.log("in Show Function")
+    userQueries.getUser(req.params.id, (err, currentUser) => {
+
+        if(err || currentUser == null) {
+          console.log("In error blok function")
+            res.redirect(404, "/")
+        } else {
+            res.render("users/show", {currentUser});
+        }
+    });
+}
 
 
 }
