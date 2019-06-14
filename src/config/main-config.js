@@ -8,11 +8,13 @@ const session = require("express-session");
 const flash = require("express-flash");
 const passportConfig = require("./passport-config");
 const logger = require('morgan');
+// const ejsLint = require('ejs-lint');
 
 module.exports = {
   init(app, express){
     app.set("views", viewsFolder);
     app.set("view engine", "ejs");
+    // app.use(ejsLint);
     app.use(logger('dev'));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(expressValidator());

@@ -3,7 +3,6 @@ const Wiki = require("./models").Wiki;
 module.exports = {
 
     getWiki(id, callback){
-
         return Wiki.findById(id)
         .then((wiki) => {
             callback(null, wiki)
@@ -25,7 +24,6 @@ module.exports = {
     },
 
     addWiki(newWiki, callback) {
-      console.info("new wiki check", newWiki);
 
         return Wiki.create(newWiki)
         .then((wiki) => {
