@@ -84,23 +84,40 @@ module.exports = {
       }
     });
   },
-  upgradeForm(req, res, next){
-    res.render("users/upgrade", {stripeSession});
+  upgradeForm(req, res, next) {
+    userQueries.getUser(req.params.id, (err, currentUser) => {
+
+      if (err || currentUser == null) {
+        res.redirect(404, "/")
+      } else {
+        res.render("users/upgrade", { currentUser });
+      }
+    });
   },
-  upgrade(req, res, next){    
-    (async () => {
-      const stripeSession = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [{
-          name: 'Pickipedia Premium Membership',
-          description: 'Pickipedia Premium Membership',
-          amount: 15,
-          currency: 'usd',
-          quantity: 1,
-        }],
-        success_url: 'https://example.com/success',
-        cancel_url: 'https://example.com/cancel',
-      });
-    })();
+  upgrade(req, res, next) {
+    console.log("UserController Post Upgrade");
+    console.log("Here's req in upgrade " + req)
+    userQueries.upgradeUser(req.params.id, (err, user) => {
+      if (err) {
+        req.flash("error", err);
+        res.redirect("/users/upgrade");
+      } else {
+        console.log('Stripe');
+        let amount = 1500;
+
+        stripe.customers.create({
+          email: req.body.stripeEmail,
+          source: req.body.stripeToken
+        })
+          .then(customer =>
+            stripe.charges.create({
+              amount,
+              description: "Pickipedia Account Upgrade Charge",
+              currency: "usd",
+              customer: customer.id
+            }))
+          .then(charge => res.render("users/upgrade_success"))
+      }
+    })
   }
 }

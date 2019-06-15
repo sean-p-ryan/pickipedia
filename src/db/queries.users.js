@@ -3,38 +3,51 @@ const User = require("./models").User;
 
 module.exports = {
 
-    createUser(newUser, callback){
+    createUser(newUser, callback) {
 
-    const salt = bcrypt.genSaltSync();
-    const hashedPassword = bcrypt.hashSync(newUser.password, salt);
+        const salt = bcrypt.genSaltSync();
+        const hashedPassword = bcrypt.hashSync(newUser.password, salt);
 
-    return User.create({
-        username: newUser.username,
-        email: newUser.email,
-        password: hashedPassword
-    })
-    .then((user) => {
-        callback(null, user);
-    })
-    .catch((err) => {
-        callback(err);
-    })
+        return User.create({
+            username: newUser.username,
+            email: newUser.email,
+            password: hashedPassword
+        })
+            .then((user) => {
+                callback(null, user);
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
 
-    getUser(id, callback){
+    getUser(id, callback) {
         console.log("In getUser function")
         return User.findById(id)
-        .then((user) => {
-            callback(null, user)
-        })
-        .catch((err) => {
-            callback(err);
-        })
+            .then((user) => {
+                callback(null, user)
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
-    upgradeUser(req, callback){
-        // Logic to upgrade user role in database
-      },
-      downgradeUser(req, callback){
+    upgradeUser(req, callback) {
+        console.log("In upgradeUser " + req.user + req.user.id)
+        return User.findById(req.user.id)        
+            .then((user) => {
+                console.log('upgradeUser')
+                if (!user) {
+                    callback("User doesn't exist");
+                } else {
+                    user.update({ role: 1 });
+                    callback(null, user);
+                }
+            })
+            .catch((err) => {
+                callback(err);
+            })
+    },
+    downgradeUser(req, callback) {
         // logic to change user role in database
-      }
+    }
 }

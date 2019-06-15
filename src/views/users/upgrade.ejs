@@ -13,9 +13,18 @@
 
         <% include ../static/partials/messages.ejs %>
 
-        <h1>Upgrade!</h1>
 
         <h2>Premium access to Pikipedia is amazing.<h2>
+
+                <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_AnpHMv7251yNu7ZzRF0oomDN00MYtEdRcf" 
+                        data-amount="1500" 
+                        data-name="Blocipedia"
+                        data-description="Premium Membership Fee"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto">
+                        </script>
+                </form>
 
 
     </main>
