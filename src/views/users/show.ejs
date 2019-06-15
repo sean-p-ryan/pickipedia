@@ -11,20 +11,19 @@
         <% include ../static/partials/messages.ejs %>
         <h1><%= `${currentUser.username}'s profile` %></h1>
         <% if (currentUser.role === 0) { %>
-        <h1>You currently have a free account.       
+        <h1>You currently have a free account.
             <form action="/users/<%=currentUser.id%>/upgrade_form" method="GET">
                 <button id="upgradeButton">
                     Wanna upgrade? It's 15 bucks.
-                </button>            
-            </form>                     
+                </button>
+            </form>
         </h1>
         <% } else if (currentUser.role === 1) { %>
         <h1>You have a premium account.
-            <a href="downgrade">
+            <form action="/users/<%=currentUser.id%>/downgrade_form" method="GET">
                 <button id="upgradeButton">
-                    Click here if you wanna downgrade.
+                    Click here if you wanna downgrade. 
                 </button>
-            </a>
         </h1>
         <% } %>
     </main>

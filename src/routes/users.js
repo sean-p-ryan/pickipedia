@@ -9,8 +9,8 @@ router.get("/users/sign_up", userController.sign_up);
 router.get("/users/sign_in", userController.signInForm);
 router.get("/users/signout", userController.signOut);
 router.get("/users/:id", userController.show);
-// router.get("/users/upgrade/:id", userController.upgradeForm);
 router.get("/users/:id/upgrade_form", userController.upgradeForm);
+router.get("/users/:id/downgrade_form", userController.downgradeForm);
 
 router.post("/users/sign_in", validation.validateUsers, userController.signIn);
 router.post("/users", validation.validateUsers, userController.create);

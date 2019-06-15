@@ -94,10 +94,20 @@ module.exports = {
       }
     });
   },
-  upgrade(req, res, next) {
-    console.log("UserController Post Upgrade");
-    console.log("Here's req in upgrade " + req)
-    userQueries.upgradeUser(req.params.id, (err, user) => {
+  downgradeForm(req, res, next) {
+    console.log("in downgrade form")
+    userQueries.getUser(req.params.id, (err, currentUser) => {
+
+      if (err || currentUser == null) {
+        res.redirect(404, "/")
+      } else {
+        res.render("users/downgrade", { currentUser });
+      }
+    });
+  },
+  upgrade(req, res, next) {    
+    console.log("here's req.user.id" + req.user.id)
+    userQueries.upgradeUser(req.user.id, (err, user) => {
       if (err) {
         req.flash("error", err);
         res.redirect("/users/upgrade");

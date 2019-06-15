@@ -31,9 +31,8 @@ module.exports = {
                 callback(err);
             })
     },
-    upgradeUser(req, callback) {
-        console.log("In upgradeUser " + req.user + req.user.id)
-        return User.findById(req.user.id)        
+    upgradeUser(id, callback) {
+        return User.findById(id)        
             .then((user) => {
                 console.log('upgradeUser')
                 if (!user) {
