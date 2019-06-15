@@ -10,6 +10,16 @@
     <main class="container">
         <% include ../static/partials/messages.ejs %>
         <h1><%= `${currentUser.username}'s profile` %></h1>
+        <% if (currentUser.role === 0) { %>
+        <h1>You currently have a free account.
+            <a href="upgrade/<%= currentUser.id %>">
+                Wanna upgrade? It's 15 bucks.
+            </a>
+        </h1>
+        <% } else if (currentUser.role === 1) { %>
+        <h1>You have a premium account.
+            Click here if you wish to downgrade.</h1>
+        <% } %>
     </main>
     <% include ../static/partials/baseScripts.ejs %>
 </body>
