@@ -13,7 +13,7 @@ router.get("/users/upgrade/:id", userController.upgradeForm);
 
 router.post("/users/sign_in", validation.validateUsers, userController.signIn);
 router.post("/users", validation.validateUsers, userController.create);
-router.post("/users/upgrade", userController.upgrade);
+router.post("/users/upgrade_form", userController.upgradeForm);
 
 
 module.exports = router;

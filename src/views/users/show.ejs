@@ -12,14 +12,43 @@
         <h1><%= `${currentUser.username}'s profile` %></h1>
         <% if (currentUser.role === 0) { %>
         <h1>You currently have a free account.
-            <a href="upgrade/<%= currentUser.id %>">
-                Wanna upgrade? It's 15 bucks.
-            </a>
+                <form action="/users/upgrade" method="POST">
+                    <button id="upgradeButton">
+                        Wanna upgrade? It's 15 bucks. 
+                    </button>
+                </form>
         </h1>
         <% } else if (currentUser.role === 1) { %>
         <h1>You have a premium account.
-            Click here if you wish to downgrade.</h1>
+            <form action="/users/upgrade" method="POST">
+                <button id="upgradeButton">
+                    Click here if you wish to downgrade.
+                </button>
+            </form>
+        </h1>
         <% } %>
+
+        <script src="https://js.stripe.com/v3/">
+            var stripe = Stripe('pk_test_AnpHMv7251yNu7ZzRF0oomDN00MYtEdRcf');
+
+            var upgradeButton = document.querySelector("#upgradeButton");
+            upgradeButton.addEventListener('click', () => {
+                stripe.redirectToCheckout({
+                    // Make the id field from the Checkout Session creation API response
+                    // available to this file, so you can provide it as parameter here
+                    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+                    sessionId: stripeSession
+                }).then(function (result, err) {
+
+                    // If `redirectToCheckout` fails due to a browser or network
+                    // error, display the localized error message to your customer
+                    // using `result.error.message`.
+                    if (err) {
+                        alert(result.error.message);
+                    }
+                })
+            })
+        </script>
     </main>
     <% include ../static/partials/baseScripts.ejs %>
 </body>

@@ -78,8 +78,6 @@ module.exports = {
     userQueries.getUser(req.params.id, (err, currentUser) => {
 
       if (err || currentUser == null) {
-        console.log("here's the error: " + err);
-        console.group("here's currentUser: " + currentUser);
         res.redirect(404, "/")
       } else {
         res.render("users/show", { currentUser });
@@ -87,11 +85,22 @@ module.exports = {
     });
   },
   upgradeForm(req, res, next){
-    res.render("users/upgrade", {publishableKey});
+    res.render("users/upgrade", {stripeSession});
   },
   upgrade(req, res, next){    
-    userQueries.upgradeUser(req, (err, user) => {
-      // Create customer in Stripe and process payment
-    })
+    (async () => {
+      const stripeSession = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+          name: 'Pickipedia Premium Membership',
+          description: 'Pickipedia Premium Membership',
+          amount: 15,
+          currency: 'usd',
+          quantity: 1,
+        }],
+        success_url: 'https://example.com/success',
+        cancel_url: 'https://example.com/cancel',
+      });
+    })();
   }
 }
