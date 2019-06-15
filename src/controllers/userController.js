@@ -74,7 +74,6 @@ module.exports = {
   },
 
   show(req, res, next) {
-    console.log("in Show Function")
     userQueries.getUser(req.params.id, (err, currentUser) => {
 
       if (err || currentUser == null) {
@@ -106,7 +105,6 @@ module.exports = {
     });
   },
   upgrade(req, res, next) {    
-    console.log("here's req.user.id" + req.user.id)
     userQueries.upgradeUser(req.user.id, (err, user) => {
       if (err) {
         req.flash("error", err);
@@ -129,5 +127,16 @@ module.exports = {
           .then(charge => res.render("users/upgrade_success"))
       }
     })
+  },
+  downgrade(req, res, next){    
+    userQueries.downgradeUser(req.user.id, (err, user) => {
+      if(err){
+        console.log('err', err)
+        req.flash("error", err);
+        res.redirect("/users/downgrade");
+      } else {        
+        res.render("users/downgrade_success");
+      }
+    });
   }
 }

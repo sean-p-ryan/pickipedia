@@ -46,7 +46,18 @@ module.exports = {
                 callback(err);
             })
     },
-    downgradeUser(req, callback) {
-        // logic to change user role in database
-    }
+    downgradeUser(id, callback){
+        return User.findById(id)
+        .then((user) => {          
+          if(!user){
+            return callback ("User doesn't exist");
+          } else {
+            user.update({role: 0});
+            callback(null, user);
+          }
+        })
+        .catch((err) => {
+          callback(err);
+        })
+      }
 }

@@ -11,10 +11,10 @@
 
       <% include ../static/partials/messages.ejs %>
 
-      <h1>Downgrade your Plan</h1>
+      <h1>Downgrade</h1>
 
-      <h2>If you no longer want to have premium access, opt out below by clicking the "Downgrade" button<h2>
-      <form action="<%=currentUser.id%>/downgrade/" method="POST">
+      <h2>Don't want premium Pikipedia anymore? Ain't no thang.<h2>
+      <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
         <button type="submit" class="btn btn-danger">Downgrade</button>
       </form>
 
