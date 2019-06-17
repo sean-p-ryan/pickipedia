@@ -72,8 +72,9 @@ module.exports = {
     show(req, res, next) {
 
         wikiQueries.getWiki(req.params.id, (err, wiki) => {
-
+            console.log("in wikis show")
             if(err || wiki == null) {
+                console.log("in error block " + err)
                 res.redirect(404, "/")
             } else {
                 res.render("wikis/show", {wiki});

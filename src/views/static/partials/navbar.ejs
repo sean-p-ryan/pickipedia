@@ -6,7 +6,7 @@
       <a href="/" class="brand-logo">Rockipedia</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <% if(currentUser) { %>
-          <li><a href="/wikis/<%= currentUser.id %>">Wikis</a></li>
+          <li><a href="/wikis/">Wikis</a></li>
           <li><a href="/users/<%= currentUser.id %>">My Profile</a></li>
         <li><a href="/users/signout">Sign out</a></li>
        <% } else { %>

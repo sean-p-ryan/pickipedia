@@ -9,8 +9,6 @@
 
   <main class="container">
 
-    <p>WE'RE IN WIKIS
-    </p>
     <% include ../static/partials/navbar.ejs %>
 
     <h1>Personal Wikis</h1>
@@ -18,7 +16,7 @@
     <ul class="list-group">
 
       <% wiki.forEach((wiki) => { %>
-      <% if (currentUser) {
+      <% if (currentUser.role === 0) {
             if (wiki.private == false ) { %> 
       <li class="list-group-item">
         <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>

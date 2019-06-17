@@ -21,6 +21,7 @@ module.exports = {
         })
         .catch((err) =>{
             callback(err);
+            console.log("In getAllWikis error " + err)
         })
     },
 
