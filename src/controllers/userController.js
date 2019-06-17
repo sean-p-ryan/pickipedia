@@ -3,7 +3,7 @@ const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const publishableKey = process.env.PUBLISHABLE_KEY;
+
 const stripe = require('stripe')('sk_test_2G5XIkKpmH0NQfehzrHZfKdA00SXR7o9H9');
 
 

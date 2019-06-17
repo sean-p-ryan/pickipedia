@@ -1,15 +1,17 @@
 const wikiQueries = require("../db/queries.wikis.js");
+const userQueries = require("../db/queries.users.js");
 
 module.exports = {
 
     index(req,res,next){
-        wikiQueries.getAllWikis((err, wikis) => {
-            console.log("In wikiController index method ");
+        console.log("In wikiController index method ");
+        console.log("req.body.user " + req.body.user)
+        wikiQueries.getAllWikis((err, wiki) => {            
           if(err){
               console.log("Here's the error " + err)
             res.redirect(500, "static/index");
           } else {
-            res.render("wikis/index", {wikis});
+            res.render("wikis/index", {wiki});
           }
         })
       },
