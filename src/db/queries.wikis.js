@@ -1,16 +1,18 @@
 const Wiki = require("./models").Wiki;
+const User = require("./models").User;
+const Authorizer = require("../policies/wiki");
 
 module.exports = {
 
-    getWiki(id, callback){
+    getWiki(id, callback) {
 
         return Wiki.findById(id)
-        .then((wiki) => {
-            callback(null, wiki)
-        })
-        .catch((err) => {
-            callback(err);
-        })
+            .then((wiki) => {
+                callback(null, wiki)
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
 
     getAllWikis(callback) {
@@ -21,52 +23,53 @@ module.exports = {
         })
         .catch((err) =>{
             callback(err);
-            console.log("In getAllWikis error " + err)
         })
     },
 
     addWiki(newWiki, callback) {
-      console.info("new wiki check", newWiki);
-
-        return Wiki.create(newWiki)
-        .then((wiki) => {
-            callback(null, wiki)
+        return Wiki.create({
+            title: newWiki.title,
+            body: newWiki.body,
+            userId: newWiki.userId,
+            private: newWiki.private
         })
-        .catch((err) => {
-            callback(err);
-        })
+            .then((wiki) => {
+                callback(null, wiki);
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
 
     deleteWiki(id, callback) {
 
         return Wiki.destroy({
-            where: {id}
+            where: { id }
         })
-        .then((deletedRecordsCount) => {
-            callback(null, deletedRecordsCount)
-        })
-        .catch((err) => {
-            callback(err);
-        })
+            .then((deletedRecordsCount) => {
+                callback(null, deletedRecordsCount)
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
 
     updateWiki(id, updatedWiki, callback) {
 
         return Wiki.findById(id)
-        .then((wiki)=> {
-            if(!wiki){
-                return callback("Wiki not found");
-            }
-
-            wiki.update(updatedWiki, {
-                fields: Object.keys(updatedWiki)
-            })
-            .then(() => {
-                callback(null, wiki);
-            })
-            .catch((err) => {
-                callback(err);
+            .then((wiki) => {
+                if (!wiki) {
+                    return callback("Wiki not found");
+                }
+                wiki.update(updatedWiki, {
+                    fields: Object.keys(updatedWiki)
+                })
+                    .then(() => {
+                        callback(null, wiki);
+                    })
+                    .catch((err) => {
+                        callback(err);
+                    });
             });
-        });
-    }
+    },
 }

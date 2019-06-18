@@ -134,9 +134,11 @@ module.exports = {
         console.log('err', err)
         req.flash("error", err);
         res.redirect("/users/downgrade");
-      } else {        
+      } else {
+        console.log('Downgrade Success')
         res.render("users/downgrade_success");
       }
     });
+    userQueries.downgradeWikis(req.user.id);
   }
 }

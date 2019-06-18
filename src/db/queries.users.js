@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const User = require("./models").User;
+const Wiki = require("./models").Wiki;
 
 module.exports = {
 
@@ -32,7 +33,7 @@ module.exports = {
             })
     },
     upgradeUser(id, callback) {
-        return User.findById(id)        
+        return User.findById(id)
             .then((user) => {
                 console.log('upgradeUser')
                 if (!user) {
@@ -46,18 +47,36 @@ module.exports = {
                 callback(err);
             })
     },
-    downgradeUser(id, callback){
+    downgradeUser(id, callback) {        
         return User.findById(id)
-        .then((user) => {          
-          if(!user){
-            return callback ("User doesn't exist");
-          } else {
-            user.update({role: 0});
-            callback(null, user);
-          }
-        })
-        .catch((err) => {
-          callback(err);
-        })
-      }
+            .then((user) => {
+                if (!user) {
+                    return callback("User doesn't exist");
+                } else {
+                    user.update({ role: 0 });
+                    callback(null, user);
+                }
+            })
+            .catch((err) => {
+                callback(err);
+            })
+    },
+    downgradeWikis(id) {
+        return Wiki.all()
+            .then((wikis) => {
+                console.log("In downgrade wikis");
+                wikis.forEach((wiki) => {
+                    if (wiki.userId == id && wiki.private == true) {
+                        console.log("Here's a private wiki" + wiki.title)
+                        wiki.update({
+                            private: false
+                        })
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("In downgrade wikis, error " + err);
+                callback(err);
+            })
+    }
 }

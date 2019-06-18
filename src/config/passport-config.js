@@ -5,40 +5,42 @@ const authHelper = require("../auth/helpers");
 
 module.exports = {
 
-    init(app){
+    init(app) {
 
         app.use(passport.initialize());
         app.use(passport.session());
+        app.use(function (req, res, next) {
+            res.locals.currentUser = req.user;
+            next();
+        })
 
         passport.use(new LocalStrategy({
             usernameField: "username"
-            }, (username, password, done) => {
-              console.log("Username" + username + "Parrword " + password)
-                User.findOne({
-                    where: { username }
-                })
+        }, (username, password, done) => {
+            User.findOne({
+                where: { username }
+            })
                 .then((user) => {
-                  console.log("User " + user) 
                     if (!user || !authHelper.comparePass(password, user.password)) {
                         return done(null, false, { message: "Invalid username or password" });
                     }
                     return done(null, user);
                 })
-            }));
+        }));
 
-            passport.serializeUser((user, callback) => {
-                callback(null, user.id);
-            });
+        passport.serializeUser((user, callback) => {
+            callback(null, user.id);
+        });
 
-            passport.deserializeUser((id, callback) => {
-                User.findById(id)
+        passport.deserializeUser((id, callback) => {
+            User.findById(id)
                 .then((user) => {
                     callback(null, user);
                 })
-                .catch((err =>{
+                .catch((err => {
                     callback(err, user);
                 }))
-            });
+        });
     }
 
 

@@ -11,5 +11,6 @@ router.get("/wikis/:id", wikiController.show);
 router.post("/wikis/create", helper.ensureAuthenticated, wikiController.create);
 router.post("/wikis/:id/destroy", wikiController.destroy);
 router.post("/wikis/:id/update", wikiController.update);
+router.post("/users/:id/downgrade", wikiController.makePublic);
 
 module.exports = router;

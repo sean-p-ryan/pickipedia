@@ -12,8 +12,7 @@ describe("routes : users", () => {
     .then(() => {
       done();
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((err) => {      
       done();
     });
 
@@ -76,7 +75,7 @@ describe("routes : users", () => {
           }
         },
         (err, res, body) => {
-          User.findOne({where: {email: "incorrectEmail"}})
+          User.findOne({where: {email: "wrongEmail"}})
           .then((user) => {
             expect(user).toBeNull();
             done();

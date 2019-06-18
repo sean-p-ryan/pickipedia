@@ -9,8 +9,7 @@ module.exports = {
       req.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
     }
 
-    const errors = req.validationErrors();
-    console.log("Here are the validation errors " + errors)
+    const errors = req.validationErrors();    
 
     if (errors) {
       req.flash("error", errors);

@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <% include ../static/partials/head.ejs %>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
 
-      <% include ../static/partials/messages.ejs %>
+        <% include ../static/partials/messages.ejs %>
 
-      <h1>Downgrade</h1>
+        <h1>Downgrade</h1>
 
-      <h2>Don't want premium Pikipedia anymore? Ain't no thang.<h2>
-      <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-        <button type="submit" class="btn btn-danger">Downgrade</button>
-      </form>
+        <h2>Don't want premium Pikipedia anymore? Ain't no thang. (Just know that all of the private wikis you created
+            will become public if you downgrade.<h2>
+                <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+                    <button type="submit" class="btn btn-danger">Downgrade</button>
+                </form>
 
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
 
-  </body>
+</body>
+
 </html>
