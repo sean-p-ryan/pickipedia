@@ -38,7 +38,7 @@ describe("routes : users", () => {
       const options = {
         url: base,
         form: {
-          username: "bik",
+          username: "Steve",
           email: "user@example.com",
           password: "123456789"
         }
@@ -75,7 +75,7 @@ describe("routes : users", () => {
           }
         },
         (err, res, body) => {
-          User.findOne({where: {email: "wrongEmail"}})
+          User.findOne({where: {email: "incorrecteEmail"}})
           .then((user) => {
             expect(user).toBeNull();
             done();

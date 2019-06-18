@@ -114,7 +114,7 @@ describe("routes : wikis", () => {
       it("should create a new wiki and redirect", (done) => {
         request.post(options,
           (err, res, body) => {
-            Wiki.findOne({where: {title: "Doggowiki"}})
+            Wiki.findOne({where: {title: "Martin wiki"}})
             .then((wiki) => {
               expect(wiki.title).toBe("Martin wiki");
               expect(wiki.body).toBe("A wiki about Martin guitars.");
