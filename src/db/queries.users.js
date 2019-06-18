@@ -66,7 +66,7 @@ module.exports = {
             .then((wikis) => {
                 console.log("In downgrade wikis");
                 wikis.forEach((wiki) => {
-                    if (wiki.userId == id && wiki.private == true) {
+                    if (wiki.id == id && wiki.private == true) {
                         console.log("Here's a private wiki" + wiki.title)
                         wiki.update({
                             private: false

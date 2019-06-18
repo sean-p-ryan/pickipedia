@@ -11,20 +11,15 @@
     "start": "node src/server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/biksingh08/blocipedia-node.git"
+    "type": "git"
   },
   "keywords": [
     "wikis"
   ],
-  "author": "Bikramjit Singh",
+  "author": "Sean Ryan",
   "license": "ISC",
   "devDependencies": {
-    "bugs": {
-      "url": "https://github.com/biksingh08/blocipedia-node/issues"
-    },
     "faker": "^4.1.0",
-    "homepage": "https://github.com/biksingh08/blocipedia-node#readme",
     "jasmine": "^3.0.0",
     "request": "^2.83.0"
   },
