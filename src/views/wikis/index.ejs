@@ -2,40 +2,69 @@
 <html>
 
 <head>
-  <% include ../static/partials/head.ejs %>
+    <% include ../static/partials/head.ejs %>
 </head>
 
 <body>
 
-  <main class="container">
+    <main class="container">
 
-    <% include ../static/partials/navbar.ejs %>
+        <% include ../static/partials/navbar.ejs %>
+            <div class="container text-right">
+                <a href="/wikis/new" class="btn btn-success">Create a New Wiki</a>
+            </div>
 
-    <h1>Personal Wikis</h1>
+            <ul class="list-group">
+                <table>
+                    <thead>
+                        <td>
+                            <strong>Wiki Name</strong>
+                        </td>
+                        <td>
+                            <strong>Created At</strong>
+                        </td>
+                    </thead>
+                    <% wiki.forEach((wiki) => { %>
+                        <% if (currentUser.role === 0) {
+            if (wiki.private === false) { %>
+                            <li class="list-group-item">
 
-    <ul class="list-group">
+                                <td>
+                                    <a href="/wikis/<%= wiki.id %>">
+                                        <%= wiki.title %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= wiki.createdAt %>
+                                </td>
+                                <% if(currentUser.id === wiki.userId) { %>
+                                    <td>
+                                        <strong>U Made Dis 1</strong>
+                                    </td>
+                                    <% } %>
+                            </li>
+                            <% } %>
+                                <% } else { %>
+                                    <tr>
+                                        <td>
+                                            <a href="/wikis/<%= wiki.id %>">
+                                                <%= wiki.title %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%= wiki.createdAt %>
+                                        </td>
+                                        <% if(currentUser.id === wiki.userId) { %>
+                                            <td>
+                                                <strong> <= U Made Dis Wiki</strong>
+                                            </td>
+                                            <% } %>
+                                    </tr>
+                                    <% }}) %>
+                </table>
 
-      <% wiki.forEach((wiki) => { %>
-      <% if (currentUser.role === 0) {
-            if (wiki.private == false ) { %> 
-      <li class="list-group-item">
-        <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-      </li>
-      <% } %>
-      <% } else { %>
-      <li class="list-group-item">
-        <a href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-      </li>
-      <% }}) %>
-
-    </ul>
-
-    <div class="container text-center">
-      <a href="/wikis/new" class="btn btn-success">New Wiki</a>
-    </div>
-
-
-  </main>
+            </ul>
+    </main>
 
 </body>
 

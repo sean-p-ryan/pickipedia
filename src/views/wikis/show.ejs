@@ -14,22 +14,19 @@
                 <%= wiki.title %>
             </h1>
 
-            <a href="/wikis/<%= wiki.id %>/edit" , class="btn btn-warning">Edit</a>
 
-            <form style="display:initial" action="/wikis/:id/destroy" method="post">
 
-                <button type="submit" class="btn btn-danger">Delete</button>
+            <%- wiki.body %>
 
-            </form>
+                <form style="display:initial" action="/wikis/:id/destroy" method="post">
 
-<<<<<<< HEAD
-      <%- wiki.body %>
-=======
->>>>>>> private-wikis
+                    <a href="/wikis/<%= wiki.id %>/edit" , class="btn btn-warning">Edit</a>
 
-            <p>
-                <%= wiki.body %>
-            </p>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+
+                </form>
+
+
 
         </main>
 
