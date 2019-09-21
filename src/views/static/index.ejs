@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <% include ./partials/head.ejs %>
-  </head>
-  <body>
+</head>
 
-      <!-- Navigation -->
-      <% include ./partials/navbar.ejs %>
+<body>
 
-      <!-- Page Content -->
-      <main class="container">
+    <!-- Navigation -->
+    <% include ./partials/navbar.ejs %>
 
-        <% include ../static/partials/messages.ejs %>
+        <!-- Page Content -->
+        <main class="container">
 
-        <div class="row">
-          <div class="col s12 m6">
-            <div class="card blue-grey">
-              <div class="card-content white-text">
-                <span class="card-title">Welcome to Pickipedia</span>
-                <p>Chronicling live roots and Americana music in NYC</p>
-              </div>
-              <div class="card-action">
-                <a href="/users/sign_up" class="btn btn-primary btn-lg">Sign up</a>               
-              </div>
-            </div>
-          </div>
-        </div>
+            <% include ./partials/messages.ejs %>
 
-        <!-- Page Features -->
-        <section class="row text-center">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card blue-grey">
+                            <div class="card-content white-text">
+                                <span class="card-title">Welcome to Pickipedia</span>
+                                <p>Chronicling live roots and Americana music in NYC</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/users/sign_up" class="btn btn-primary btn-lg">Sign up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-          <section class="col-lg-4">
-            <h4 class="card-title">Create Hella Wikis</h4>
-            <p class="card-text">Free Plan</p>
-          </section>
+                <!-- Page Features -->
+                <section class="row text-center">
 
-          <section class="col-lg-4">
-            <h4 class="card-title">Create Infinity Wikis</h4>
-            <p class="card-text">Premium Plan</p>
-          </section>
+                    <section class="col-lg-4">
+                        <h4 class="card-title">Create Hella Wikis</h4>
+                        <p class="card-text">Free Plan</p>
+                    </section>
+
+                    <section class="col-lg-4">
+                        <h4 class="card-title">Create Infinity Wikis</h4>
+                        <p class="card-text">Premium Plan</p>
+                    </section>
 
 
-        </section>
-        <!-- /.row -->
+                </section>
+                <!-- /.row -->
 
-      </main>
-      <!-- /.container -->
+        </main>
+        <!-- /.container -->
 
-      <% include ./partials/baseScripts.ejs %>
-    </body>
+        <% include ./partials/baseScripts.ejs %>
+</body>
+
 </html>
