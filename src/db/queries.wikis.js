@@ -18,21 +18,21 @@ module.exports = {
     getAllWikis(callback) {
         console.log("In getAllWikis ")
         return Wiki.all()
-        .then((wikis) => {
-            callback(null, wikis);
-        })
-        .catch((err) =>{
-            callback(err);
-        })
+            .then((wikis) => {
+                callback(null, wikis);
+            })
+            .catch((err) => {
+                callback(err);
+            })
     },
 
     addWiki(newWiki, callback) {
         return Wiki.create({
-            title: newWiki.title,
-            body: newWiki.body,
-            userId: newWiki.userId,
-            private: newWiki.private
-        })
+                title: newWiki.title,
+                body: newWiki.body,
+                userId: newWiki.userId,
+                private: newWiki.private
+            })
             .then((wiki) => {
                 callback(null, wiki);
             })
@@ -44,8 +44,8 @@ module.exports = {
     deleteWiki(id, callback) {
 
         return Wiki.destroy({
-            where: { id }
-        })
+                where: { id }
+            })
             .then((deletedRecordsCount) => {
                 callback(null, deletedRecordsCount)
             })
@@ -62,8 +62,8 @@ module.exports = {
                     return callback("Wiki not found");
                 }
                 wiki.update(updatedWiki, {
-                    fields: Object.keys(updatedWiki)
-                })
+                        fields: Object.keys(updatedWiki)
+                    })
                     .then(() => {
                         callback(null, wiki);
                     })

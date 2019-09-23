@@ -10,10 +10,10 @@ module.exports = {
         const hashedPassword = bcrypt.hashSync(newUser.password, salt);
 
         return User.create({
-            username: newUser.username,
-            email: newUser.email,
-            password: hashedPassword
-        })
+                username: newUser.username,
+                email: newUser.email,
+                password: hashedPassword
+            })
             .then((user) => {
                 callback(null, user);
             })
@@ -27,6 +27,16 @@ module.exports = {
         return User.findById(id)
             .then((user) => {
                 callback(null, user)
+            })
+            .catch((err) => {
+                callback(err);
+            })
+    },
+    searchByUsername(username, callback) {
+        return User.findAll({ where: { username: username } })
+            .then((users) => {
+                console.log("Here are the users " + users)
+                callback(null, users)
             })
             .catch((err) => {
                 callback(err);
@@ -47,7 +57,7 @@ module.exports = {
                 callback(err);
             })
     },
-    downgradeUser(id, callback) {        
+    downgradeUser(id, callback) {
         return User.findById(id)
             .then((user) => {
                 if (!user) {

@@ -1,7 +1,6 @@
-
 const express = require("express");
 const router = express.Router();
-
+const collaboratorController = require("../controllers/collaboratorController")
 const userController = require("../controllers/userController");
 const validation = require("./validation");
 
@@ -16,6 +15,9 @@ router.post("/users/sign_in", validation.validateUsers, userController.signIn);
 router.post("/users", validation.validateUsers, userController.create);
 router.post("/users/:id/upgrade", userController.upgrade);
 router.post("/users/:id/downgrade", userController.downgrade);
+router.post("/users/collaborators/search", userController.search);
+router.post("/users/collaborators/add/:id", collaboratorController.create);
+
 
 
 
