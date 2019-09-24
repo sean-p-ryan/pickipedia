@@ -2,59 +2,85 @@
 <html>
 
 <head>
-  <% include ../static/partials/head.ejs %>
+    <% include ../static/partials/head.ejs %>
 </head>
 
 <body>
 
-  <% include ../static/partials/navbar.ejs %>
+    <% include ../static/partials/navbar.ejs %>
 
-  <main class="container">
+        <main class="container">
 
-    <% include ../static/partials/messages.ejs %>
+            <% include ../static/partials/messages.ejs %>
 
-    <h1>Sign Up</h1>
-    <div class="row">
-      <form class="col s12" action="/users" method="post">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="name" type="text" class="validate" name="name">
-            <label for="name">Name</label>
-          </div>
-            <div class="input-field col s6">
-              <input id="username" type="text" class="validate" name="username">
-              <label for="username">Username</label>
-            </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" name="email" type="text" class="validate">
-            <label for="email">Email</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" name="password" type="password" class="validate">
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="passwordconfirmation" name="passwordConfirmation" type="password" class="validate">
-            <label for="passwordconfirmation">Password Confirmation</label>
-          </div>
-        </div>
-        <div class="row">
-        </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">
+                <div class="form-container">
+                    <form class="callout text-center" action="/users" method="post">
+                        <div class="floated-label-wrapper">
+                            <label for="full-name">Full name</label>
+                            <input type="text" id="full-name" name="name" placeholder="Full name" name="name">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="full-name">Username</label>
+                            <input type="text" id="full-name" name="username" placeholder="Username" name="username">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="pass">Password</label>
+                            <input type="password" name="password" id="pass" placeholder="Password">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="pass">Password</label>
+                            <input type="password" id="pass" name="passwordConfirmation" placeholder="Password Confirmation">
+                        </div>
+                        <input class="button expanded sign-up-submit" type="submit" value="Sign up">
+                    </form>
+                </div>
+
+
+                <!-- 
+                <div class="row">
+                    <form class="col s12" action="/users" method="post">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="name" type="text" class="validate" name="name">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="username" type="text" class="validate" name="username">
+                                <label for="username">Username</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" name="email" type="text" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" name="password" type="password" class="validate">
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="passwordconfirmation" name="passwordConfirmation" type="password" class="validate">
+                                <label for="passwordconfirmation">Password Confirmation</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
           <i class="material-icons center">Submit</i>
         </button>
-      </form>
-    </div>
+                    </form>
+                </div> -->
 
-  </main>
-
-  <% include ../static/partials/baseScripts.ejs %>
+        </main>
+        <% include ../static/partials/baseScripts.ejs %>
 
 </body>
 

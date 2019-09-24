@@ -2,42 +2,57 @@
 <html>
 
 <head>
-  <% include ../static/partials/head.ejs %>
+    <% include ../static/partials/head.ejs %>
 </head>
 
 <body>
 
-  <% include ../static/partials/navbar.ejs %>
+    <% include ../static/partials/navbar.ejs %>
 
-  <main class="container">
-    <% include ../static/partials/messages.ejs %>
-    <h1>Sign In</h1>
+        <main class="container">
+            <% include ../static/partials/messages.ejs %>
 
-    <form action="/users/sign_in" method="POST">
+                <div class="form-container">
+                    <form class="callout text-center" action="/users/sign_in" method="POST">
+                        <div class="floated-label-wrapper">
+                            <label for="full-name">Username</label>
+                            <input type="text" id="full-name" name="username" placeholder="Full name" name="name">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="full-name">Email</label>
+                            <input type="email" id="full-name" name="email" placeholder="Email" name="username">
+                        </div>
+                        <div class="floated-label-wrapper">
+                            <label for="email">Password</label>
+                            <input type="password" id="email" name="password" placeholder="Password">
+                        </div>
+                        <input class="button expanded sign-up-submit" type="submit">
+                    </form>
+                </div>
 
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" aria-describedby="usernameHelp"
-          placeholder="Enter username">
-      </div>
+                <!-- <form action="/users/sign_in" method="POST">
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-        <small class="text-muted" id="emailHelp">Must be a valid address</small>
-      </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" aria-describedby="usernameHelp" placeholder="Enter username">
+                    </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" aria-describedby="passwordHelp"
-          placeholder="Enter password">
-      </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small class="text-muted" id="emailHelp">Must be a valid address</small>
+                    </div>
 
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-  </main>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="Enter password">
+                    </div>
 
-  <% include ../static/partials/baseScripts.ejs %>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form> -->
+        </main>
+
+        <% include ../static/partials/baseScripts.ejs %>
 
 </body>
 

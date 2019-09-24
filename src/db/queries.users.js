@@ -10,14 +10,15 @@ module.exports = {
         const hashedPassword = bcrypt.hashSync(newUser.password, salt);
 
         return User.create({
-            username: newUser.username,
-            email: newUser.email,
-            password: hashedPassword
-        })
+                username: newUser.username,
+                email: newUser.email,
+                password: hashedPassword
+            })
             .then((user) => {
                 callback(null, user);
             })
             .catch((err) => {
+                console.log(err, request.body.email);
                 callback(err);
             })
     },
@@ -47,7 +48,7 @@ module.exports = {
                 callback(err);
             })
     },
-    downgradeUser(id, callback) {        
+    downgradeUser(id, callback) {
         return User.findById(id)
             .then((user) => {
                 if (!user) {

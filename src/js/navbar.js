@@ -3,19 +3,36 @@ var active = document.querySelector(".active");
 var newActive;
 
 var signUp = document.querySelector(".sign-up")
-var signUp = document.querySelector(".sign-in")
-var signUp = document.querySelector(".profile")
-var signUp = document.querySelector(".wikis")
+var signIn = document.querySelector(".sign-in")
+var profile = document.querySelector(".profile")
+var wikis = document.querySelector(".wikis")
+var home = document.querySelector(".home")
 
 var path = window.location.pathname;
 
-if (path.includes("sign_up")){
+if (path.includes("sign_up")) {
     newActive = signUp;
-} else if(path.includes("sign_up")) {
-
+} else if (path.includes("sign_in")) {
+    newActive = signIn;
+} else if (path.length === 1) {
+    newActive = home;
 }
 
-document.addEventListener("click", function(e) {
-    newActive = e.target;
-    console.log(newActive)
+active.classList.remove("active");
+newActive.classList.add("active");
+
+// Sign-up form
+$(function() {
+    var showClass = 'show';
+
+    $('input').on('checkval', function() {
+        var label = $(this).prev('label');
+        if (this.value !== '') {
+            label.addClass(showClass);
+        } else {
+            label.removeClass(showClass);
+        }
+    }).on('keyup', function() {
+        $(this).trigger('checkval');
+    });
 });

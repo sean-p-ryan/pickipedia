@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 
@@ -12,8 +11,8 @@ router.get("/users/:id", userController.show);
 router.get("/users/:id/upgrade_form", userController.upgradeForm);
 router.get("/users/:id/downgrade_form", userController.downgradeForm);
 
-router.post("/users/sign_in", validation.validateUsers, userController.signIn);
-router.post("/users", validation.validateUsers, userController.create);
+router.post("/users/sign_in", userController.signIn);
+router.post("/users", userController.create);
 router.post("/users/:id/upgrade", userController.upgrade);
 router.post("/users/:id/downgrade", userController.downgrade);
 
