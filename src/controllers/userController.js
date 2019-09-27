@@ -2,9 +2,8 @@ const userQueries = require("../db/queries.users.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-
 const stripe = require('stripe')('sk_test_2G5XIkKpmH0NQfehzrHZfKdA00SXR7o9H9');
+const bodyParser = require('body-parser')
 
 
 module.exports = {
@@ -80,6 +79,16 @@ module.exports = {
                 res.redirect(404, "/")
             } else {
                 res.render("users/show", { currentUser });
+            }
+        });
+    },
+    search(req, res, next) {
+        userQueries.searchByUsername(req.body.username, (err, users) => {
+            console.log("Here are the params " + req.params)
+            if (err || users == null) {
+                res.redirect(404, "/")
+            } else {
+                res.render("wikis/collaborators_add", { users });
             }
         });
     },

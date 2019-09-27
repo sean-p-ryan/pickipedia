@@ -33,6 +33,16 @@ module.exports = {
                 callback(err);
             })
     },
+    searchByUsername(username, callback) {
+        return User.findAll({ where: { username: username } })
+            .then((users) => {
+                console.log("Here are the users " + users)
+                callback(null, users)
+            })
+            .catch((err) => {
+                callback(err);
+            })
+    },
     upgradeUser(id, callback) {
         return User.findById(id)
             .then((user) => {

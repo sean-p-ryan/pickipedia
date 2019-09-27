@@ -17,13 +17,13 @@
     <ul class="menu menu-hover-lines">
         <li class="home active nav-menu-item"><a href="/">Home</a></li>
         <% if(currentUser) { %>
-        <li class="wikis nav-menu-item"><a href="/wikis/">Wikis</a></li>
-        <li class="profile nav-menu-item"><a href="/users/<%= currentUser.id %>">My Profile</a></li>
-        <li class="sign-out nav-menu-item"><a href="/users/signout">Sign out</a></li>
-        <% } else { %>
-        <li class="sign-up"><a href="/users/sign_up">Sign up</a></li>
-        <li class="sign-in"><a href="/users/sign_in">Sign in</a></li>
-        <% }%>
+            <li class="wikis nav-menu-item"><a href="/wikis/">Wikis</a></li>
+            <li class="profile nav-menu-item"><a href="/users/<%= currentUser.id %>">My Profile</a></li>
+            <li class="sign-out nav-menu-item"><a href="/users/signout">Sign out</a></li>
+            <% } else { %>
+                <li class="sign-up"><a href="/users/sign_up">Sign up</a></li>
+                <li class="sign-in"><a href="/users/sign_in">Sign in</a></li>
+                <% }%>
     </ul>
 </div>
 <!-- </header> -->
@@ -32,8 +32,17 @@
 
 <!-- <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a href="/" class="brand-logo">Rockipedia</a>
-
+        <a href="/" class="brand-logo">Pickipedia</a>
+        <ul>
+            <% if(currentUser) { %>
+                <li><a href="/wikis/">Wikis</a></li>
+                <li><a href="/users/<%= currentUser.id %>">My Profile</a></li>
+                <li><a href="/users/signout">Sign out</a></li>
+                <% } else { %>
+                    <li><a href="/users/sign_up">Sign up</a></li>
+                    <li><a href="/users/sign_in">Sign in</a></li>
+                    <% }%>
+        </ul>
 
     </div>
 </nav> -->

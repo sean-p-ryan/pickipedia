@@ -7,27 +7,29 @@
 
 <body>
     <% include ../static/partials/navbar.ejs %>
-    <main class="container">
-        <% include ../static/partials/messages.ejs %>
-        <h1><%= `${currentUser.username}'s profile` %></h1>
-        <% if (currentUser.role === 0) { %>
-        <h1>You currently have a free account.
-            <form action="/users/<%=currentUser.id%>/upgrade_form" method="GET">
-                <button id="upgradeButton">
+        <main class="container">
+            <% include ../static/partials/messages.ejs %>
+                <h1>
+                    <%= `Hey there, ${currentUser.username}!` %>
+                </h1>
+                <% if (currentUser.role === 0) { %>
+                    <h1>You currently have a free account.
+                        <form action="/users/<%=currentUser.id%>/upgrade_form" method="GET">
+                            <button id="upgradeButton">
                     Wanna upgrade? It's 15 bucks.
                 </button>
-            </form>
-        </h1>
-        <% } else if (currentUser.role === 1) { %>
-        <h1>You have a premium account.
-            <form action="/users/<%=currentUser.id%>/downgrade_form" method="GET">
-                <button id="upgradeButton">
+                        </form>
+                    </h1>
+                    <% } else if (currentUser.role === 1) { %>
+                        <h1>You have a premium account.
+                            <form action="/users/<%=currentUser.id%>/downgrade_form" method="GET">
+                                <button id="upgradeButton">
                     Click here if you wanna downgrade. 
                 </button>
-        </h1>
-        <% } %>
-    </main>
-    <% include ../static/partials/baseScripts.ejs %>
+                        </h1>
+                        <% } %>
+        </main>
+        <% include ../static/partials/baseScripts.ejs %>
 </body>
 
 </html>
