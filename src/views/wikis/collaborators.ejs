@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../static/partials/head.ejs %>
+</head>
+
+<body>
+    <% include ../static/partials/navbar.ejs %>
+
+        <main class="container">
+
+            <h1>Add collaborators</h1>
+
+            <form action="/users/collaborators/search" method="post">
+                <input type="text" name="username" placeholder="Search for a collaborator by username">
+                <button type="submit">Search for This User</button>
+            </form>
+
+        </main>
+
+        <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
+</html>

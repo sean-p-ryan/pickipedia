@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../static/partials/head.ejs %>
+</head>
+
+<body>
+    <% include ../static/partials/navbar.ejs %>
+
+        <main class="container">
+
+            <p>The following users match your search:</p>
+
+            <% users.forEach((user) => { %>
+                <p>
+                    <form method="post" action="/users/collaborators/add/<%= user.id %>">
+                        <%= `Username: ${user.username}` %>
+                            <button type="submit" name="user">Add as collaborator</button>
+                    </form>
+                </p>
+                <%  }) %>
+
+
+        </main>
+
+        <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
+</html>
