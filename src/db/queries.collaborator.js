@@ -5,11 +5,10 @@ const Collaborator = require("./models").Collaborator;
 
 module.exports = {
     addCollaborator(newCollaborator, callback) {
+        console.log("in add collaborator, should be id" + newCollaborator.username)
         return Collaborator.create({
-                id: newCollaborator.id,
+                userId: newCollaborator.userId,
                 wikiId: newCollaborator.wikiId,
-                first_name: newCollaborator.first_name,
-                last_name: newCollaborator.last_name,
                 username: newCollaborator.username
             })
             .then((collaborator) => {
@@ -28,6 +27,15 @@ module.exports = {
             .catch((err) => {
                 callback(err);
                 console.log("Here's the error in findCollaboratorsById" + err)
+            })
+    },
+    removeCollaborator(id, callback) {
+        return Collaborator.destroy({ where: { userId: id } })
+            .then(user => {
+                callback(null, user)
+            })
+            .catch(err => {
+                callback(err)
             })
     }
 }

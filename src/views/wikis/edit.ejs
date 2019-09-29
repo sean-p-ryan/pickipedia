@@ -45,6 +45,11 @@
                             <a href="/wikis/<%= wikiData.wiki.id %>/collaborator">Add collaborators</a>
                             <%}%>
 
+                                <%if (wikiData.collaborators.length > 0) { %>
+                                    <p>Here are the collaborators on this wiki: </p>
+                                    <%= wikiData.collaborators[0].username %><a href="/wikis/:wikiId/collaborator/<%= wikiData.collaborators[0].userId%>">Remove this collaborator</a>
+                                        <% } %>
+
 
 
 

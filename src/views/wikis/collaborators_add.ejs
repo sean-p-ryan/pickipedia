@@ -14,7 +14,7 @@
 
             <% collaboratorData.user.forEach((user) => { %>
                 <p>
-                    <form method="post" action="/wikis/<%= collaboratorData.wiki.id %>/collaborator/add/<%= user.id %>">
+                    <form method="post" action="/wikis/<%= collaboratorData.wiki.id %>/collaborator/add/<%= user.id %>/<%= user.username %>">
                         <%= `Username: ${user.username}` %>
                             <button type="submit" name="user">Add as collaborator</button>
                     </form>

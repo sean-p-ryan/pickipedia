@@ -17,6 +17,7 @@ module.exports = {
             if (err || user == null) {
                 res.redirect(404, "/")
             } else {
+                collaboratorData.username = user.username;
                 collaboratorData.user = user;
                 res.render("wikis/collaborators_add", { collaboratorData })
             }
@@ -24,25 +25,14 @@ module.exports = {
     },
     create(req, res, next) {
         let id = req.params.collaboratorId;
-        console.log("should be wiki id " + req.params.wikiId)
-        console.log("should be collab id " + req.params.collaboratorId)
+        let wikiId = req.params.wikiId;
+        let username = req.params.username
 
-        const newCollaborator = {
-            "id": req.params.collaboratorId,
-            "wikiId": req.params.wikiId,
-            "username": "",
-            "first_name": "",
-            "last_name": ""
+        let newCollaborator = {
+            userId: id,
+            wikiId: wikiId,
+            username: username
         }
-
-        userQueries.getUser(id, (err, user) => {
-            if (err) {
-                res.redirect(500, `/wikis/${wikiId}`);
-            } else {
-                newCollaborator.username = user.username;
-                newCollaborator.first_name = user.first_name;
-            }
-        })
 
         collaboratorQueries.addCollaborator(newCollaborator, (err, collaborator) => {
             if (err) {
@@ -53,15 +43,14 @@ module.exports = {
         });
     },
 
-    update(req, res, next) {
-        // Update collaborators on a wiki
-    },
-
-    destroy(req, res, next) {
-        // Remove a collaborator from a wiki
-    },
-
-    show(req, res, next) {
-        // Show all collaborators on a wiki
+    remove(req, res, next) {
+        let collaboratorId = req.params.collaboratorId
+        collaboratorQueries.removeCollaborator(collaboratorId, (err, collaborator) => {
+            if (err) {
+                res.redirect(500, `/wikis/${wikiId}`);
+            } else {
+                res.render("wikis/collaborators_removed")
+            }
+        });
     }
 }
