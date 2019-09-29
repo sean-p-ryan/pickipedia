@@ -23,13 +23,11 @@
                         <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
                     </div>
                     <% if (currentUser.role > 0) { %>
-                        <div class="form-group">
-                            <label for="private">Would you like to make this wiki private?</label>
-                            <select class="form-control" name="private">
-                              <option value='false'>Public</option>
-                              <option value='true'>Private</option>
-                            </select>
-                        </div>
+                        <label for="private">Would you like to make this wiki private?</label>
+                        <select name="private" style="display: block">
+                        <option value='false' selected>Public</option>
+                        <option value='true'>Private</option>
+                        </select>
                         <% } %>
                             <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

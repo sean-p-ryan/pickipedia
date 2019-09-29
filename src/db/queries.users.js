@@ -33,6 +33,20 @@ module.exports = {
                 callback(err);
             })
     },
+    getUsersByIds(ids, callback) {
+        let allUsers = [];
+        ids.forEach(id => {
+            return User.findById(id)
+                .then((user) => {
+                    allUsers.push(user);
+                })
+                .catch((err) => {
+                    callback(err);
+                })
+        })
+        console.log("Should contain all users " + allUsers)
+        callback(null, allUsers)
+    },
     searchByUsername(username, callback) {
         return User.findAll({ where: { username: username } })
             .then((users) => {
