@@ -28,8 +28,9 @@ module.exports = {
 
                 // #3
                 passport.authenticate("local")(req, res, () => {
+                    let user = newUser;
                     req.flash("notice", "You've successfully signed in!");
-                    res.redirect("/");
+                    res.redirect("/", { user });
 
                     const sgMail = require('@sendgrid/mail');
 
@@ -53,9 +54,9 @@ module.exports = {
     },
 
     signIn(req, res, next) {
-
+        console.log("In signIn method" + req.user)
         passport.authenticate("local")(req, res, function() {
-            console.log(req.user);
+            console.log("In passport authenticate" + req.user);
             if (!req.user) {
                 req.flash("notice", "Sign in failed. Please try again.")
                 res.redirect("/users/sign_in");

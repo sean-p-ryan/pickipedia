@@ -10,6 +10,14 @@ module.exports = (sequelize, DataTypes) => {
                 key: "id",
                 as: "wikiId",
             }
+        },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, {});
     Collaborator.associate = function(models) {

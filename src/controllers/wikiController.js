@@ -1,4 +1,6 @@
 const wikiQueries = require("../db/queries.wikis.js");
+const collaboratorQueries = require("../db/queries.collaborator.js");
+const userQueries = require("../db/queries.users.js");
 const markdown = require("markdown").markdown;
 
 module.exports = {
@@ -37,14 +39,25 @@ module.exports = {
     },
 
     edit(req, res, next) {
-        wikiQueries.getWiki(req.params.id, (err, wiki) => {
-
+        let wikiId = req.params.id;
+        let wikiData = {};
+        wikiQueries.getWiki(wikiId, (err, wiki) => {
             if (err || wiki == null) {
                 res.redirect(404, "/")
             } else {
-                res.render("wikis/edit", { wiki })
+                wikiData.wiki = wiki;
+                // console.log("Here's the wiki data " + wikiData.wiki.id)
+                // res.render("wikis/edit", { wikiData })
+                collaboratorQueries.findCollaboratorsById(wikiId, (err, collaborators) => {
+                    if (err) {
+                        res.redirect(404, "/")
+                    } else {
+                        wikiData.collaborators = collaborators;
+                        res.render("wikis/edit", { wikiData })
+                    }
+                })
             }
-        });
+        })
     },
 
     update(req, res, next) {
@@ -84,4 +97,4 @@ module.exports = {
     makePublic(req, res, next) {
         wikiQueries.downgradeWiki(req.params.id, false);
     }
-}
+};

@@ -24,7 +24,6 @@ module.exports = {
     },
 
     getUser(id, callback) {
-        console.log("In getUser function")
         return User.findById(id)
             .then((user) => {
                 callback(null, user)
@@ -32,6 +31,44 @@ module.exports = {
             .catch((err) => {
                 callback(err);
             })
+    },
+    getCollaboratorData(data, callback) {
+        console.log("In collaborator data2, should be id" + data.userId)
+        return User.findById(data.userId)
+            .then((user) => {
+                if (!user) {
+                    callback("User doesn't exist");
+                } else {
+                    data.username = user.username;
+                    callback(data)
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
+    returnUser(id) {
+        return User.findById(id)
+            .then((user) => {
+                return user
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
+    getUsersByIds(ids, callback) {
+        let allUsers = [];
+        ids.forEach(id => {
+            return User.findById(id)
+                .then((user) => {
+                    allUsers.push(user);
+                })
+                .catch((err) => {
+                    callback(err);
+                })
+        })
+        console.log("Should contain all users " + allUsers)
+        callback(null, allUsers)
     },
     searchByUsername(username, callback) {
         return User.findAll({ where: { username: username } })
