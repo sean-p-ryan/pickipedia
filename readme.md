@@ -10,17 +10,17 @@ Hosted on Heroku at: https://sean-p--ryan-blocipedia.herokuapp.com/
 Be sure to have Node.js and Git installed on your machine. 
 
 ### Installing
-After cloning into a local copy of the repo, run `npm install` to install dependencies, then `npm start` to start a local server on localhost:3000. Navigate to localhost:3000 in any browser to view the application in a local setup. 
+After cloning into a local copy of the repo, run `npm install` to install dependencies. Run `npm install -g nodemon` to install Nodemon globally, then run the `nodemon` command to launch the application on localhost:3000 and automatically refresh the browser when server-side changes are saved. 
 
-### Server
-I selected Express.js to power the back end of the application since it is well suited to handle each of its functional needs, including:  
+## Server
+Node and Express perform route handling, static file rendering, and assist with database modeling and querying. 
 
-- Serving static files 
-- Handling client-side HTTP requests 
-- Directing reqests to an external API and converting responses to JSON
-- Sending JSON data from the API to the client
-- Setting up a local server for development and testing
-- Server port management for local and production environments
+## Database
+
+## Middleware
+### Authentication
+[I'm an inline-style link](https://www.google.com)
+Passport handles user authentication, using the default 'local' strategy to store the user object in sessions.
 
 ### Testing
-A Jasmine test suite for all server endpoints is in `./spec/static_spec.js`. `npm test` will run tests. 
+A Jasmine test suite for all server endpoints is in the `src/spec` folder. `npm test` will run tests. 
