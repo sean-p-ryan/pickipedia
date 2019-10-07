@@ -16,11 +16,10 @@ After cloning into a local copy of the repo, run `npm install` to install depend
 Node and Express perform route handling, static file rendering, and assist with database modeling and querying. 
 
 ## Database
+User data is stored in a Postgres relational database in both production and development environments. Database access credentials for both are stored as environment variables. Database modeling and querying is handled with the [Sequelize ORM](https://sequelize.org/)
 
-## Middleware
-### Authentication
-[I'm an inline-style link](https://www.google.com)
-Passport handles user authentication, using the default 'local' strategy to store the user object in sessions.
+## User Authentication
+[Passport](http://www.passportjs.org/docs/) handles user authentication, using the default 'local' strategy to store the user object in sessions.
 
-### Testing
+## Testing
 A Jasmine test suite for all server endpoints is in the `src/spec` folder. `npm test` will run tests. 
