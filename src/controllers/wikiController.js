@@ -46,8 +46,6 @@ module.exports = {
                 res.redirect(404, "/")
             } else {
                 wikiData.wiki = wiki;
-                // console.log("Here's the wiki data " + wikiData.wiki.id)
-                // res.render("wikis/edit", { wikiData })
                 collaboratorQueries.findCollaboratorsById(wikiId, (err, collaborators) => {
                     if (err) {
                         res.redirect(404, "/")
