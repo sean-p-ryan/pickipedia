@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <% include ./partials/head.ejs %>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Navigation -->
-    <% include ./partials/navbar.ejs %>
 
-        <!-- Page Content -->
-        <main class="container">
+    <!-- Page Content -->
+    <main class="container">
+      <% include ./partials/navbar.ejs %> <% include ./partials/messages.ejs %>
 
-            <% include ./partials/messages.ejs %>
+      <div
+        class="flip-card card"
+        ontouchstart="this.classList.toggle('hover');"
+      >
+        <div class="flip-card-inner">
+          <div class="flip-card-inner-front">
+            <span>PICKIPEDIA</span>
+          </div>
+          <div class="flip-card-inner-back">
+            <h3 class="flip-card-inner-back-title">
+              The Greatest 'Pedia Of Them All
+            </h3>
+            <p class="flip-card-inner-back-text">
+              Chronicling live roots and Americana music in New York City.
+            </p>
+            <a href="/users/sign_up" class="button success">SIGN UP NOW</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- /.container -->
 
-                <div class="flip-card card" ontouchstart="this.classList.toggle('hover');">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-inner-front">
-                            <span>PICKIPEDIA</span>
-                        </div>
-                        <div class="flip-card-inner-back">
-                            <h3 class="flip-card-inner-back-title">The Greatest 'Pedia Of Them All</h3>
-                            <p class="flip-card-inner-back-text">Chronicling live roots and Americana music in New York City.</p>
-                            <a href="/users/sign_up" class="button success">SIGN UP NOW</a>
-                        </div>
-                    </div>
-                </div>
-
-        </main>
-        <!-- /.container -->
-
-        <% include ./partials/baseScripts.ejs %>
-</body>
-
+    <% include ./partials/baseScripts.ejs %>
+  </body>
 </html>

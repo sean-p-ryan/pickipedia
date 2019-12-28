@@ -4,12 +4,10 @@
 <head>
     <% include ../static/partials/head.ejs %>
 </head>
-
-<body>
-    <% include ../static/partials/navbar.ejs %>
+<body>    
 
         <main class="container">
-
+                <% include ../static/partials/navbar.ejs %>
             <p>The following users match your search:</p>
 
             <% collaboratorData.user.forEach((user) => { %>
