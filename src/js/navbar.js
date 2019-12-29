@@ -16,23 +16,13 @@ if (path.includes("sign_up")) {
     newActive = signIn;
 } else if (path.length === 1) {
     newActive = home;
+} else if (path.includes("wikis")) {
+    newActive = wikis;
+} else if (path.includes("users")) {
+    newActive = profile;
 }
 
 active.classList.remove("active");
 newActive.classList.add("active");
 
-// Sign-up form
-$(function() {
-    var showClass = 'show';
 
-    $('input').on('checkval', function() {
-        var label = $(this).prev('label');
-        if (this.value !== '') {
-            label.addClass(showClass);
-        } else {
-            label.removeClass(showClass);
-        }
-    }).on('keyup', function() {
-        $(this).trigger('checkval');
-    });
-});

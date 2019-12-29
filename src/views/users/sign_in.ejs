@@ -15,7 +15,7 @@
                     <form class="callout text-center" action="/users/sign_in" method="POST">
                         <div class="floated-label-wrapper">
                             <label for="full-name">Username</label>
-                            <input type="text" id="full-name" name="username" placeholder="Full name" name="name">
+                            <input type="text" id="full-name" name="username" placeholder="Username" name="name">
                         </div>
                         <div class="floated-label-wrapper">
                             <label for="full-name">Email</label>
@@ -25,34 +25,13 @@
                             <label for="email">Password</label>
                             <input type="password" id="email" name="password" placeholder="Password">
                         </div>
-                        <input class="button expanded sign-up-submit" type="submit">
+                        <input class="button expanded sign-up-submit" type="submit" value="Sign In">
                     </form>
                 </div>
-
-                <!-- <form action="/users/sign_in" method="POST">
-
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" aria-describedby="usernameHelp" placeholder="Enter username">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small class="text-muted" id="emailHelp">Must be a valid address</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" aria-describedby="passwordHelp" placeholder="Enter password">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form> -->
         </main>
 
         <% include ../static/partials/baseScripts.ejs %>
-
+        <script src="../../js/index.js"></script>
 </body>
 
 </html>

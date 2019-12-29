@@ -5,11 +5,9 @@
     <% include ../static/partials/head.ejs %>
 </head>
 
-<body>
-    <% include ../static/partials/navbar.ejs %>
-
+<body>    
         <main class="container">
-
+                <% include ../static/partials/navbar.ejs %>
             <h1>Add collaborators</h1>
 
             <form action="/wikis/<%= wikiId %>/collaborator/results" method="post">
