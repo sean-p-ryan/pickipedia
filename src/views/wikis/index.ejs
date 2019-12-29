@@ -1,71 +1,64 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <% include ../static/partials/head.ejs %>
-</head>
+  </head>
 
-<body>
+  <body>        
+    <main class="container wiki-container">                
+            <% include ../static/partials/navbar.ejs %>   
+      <div class="wiki-container"> 
+      <a href="/wikis/new" class="btn add-new-wiki float-right">NEW +</a>
+      <ul class="list-group">            
+        <table>                
+          <thead>
+            <td>
+              <strong class="table-head">Wiki Name</strong>
+            </td>
+            <td>
+              <strong class="table-head">Created At</strong>
+            </td>
+            <td class="created-by">
+              <strong class="table-head">Created By</strong>
+            </td>
+          </thead>
+          <% wiki.forEach((wiki) => { %> <% if (currentUser.role === 0) { if
+          (wiki.private === false) { %>
+          <li class="list-group-item">
+            <td>
+              <a href="/wikis/<%= wiki.id %>">
+                <%= wiki.title %>
+              </a>
+            </td>
+            <td>
+              <%= wiki.createdAt %>
+            </td>
+            <% if(currentUser.id === wiki.userId) { %>
+            <td>
+              <strong>You</strong>
+            </td>
+            <% } %>
+          </li>
+          <% } %> <% } else { %>
+          <tr>
+            <td>
+              <a href="/wikis/<%= wiki.id %>">
+                <%= wiki.title %>
+              </a>
+            </td>
+            <td>
+              <%= moment(wiki.createdAt).format('MMMM DD, YYYY'); %>
+            </td>
 
-    <main class="container">
-
-        <% include ../static/partials/navbar.ejs %>
-            <div class="container text-right">
-                <a href="/wikis/new" class="btn btn-success">Create a New Wiki</a>
-            </div>
-
-            <ul class="list-group">
-                <table>
-                    <thead>
-                        <td>
-                            <strong>Wiki Name</strong>
-                        </td>
-                        <td>
-                            <strong>Created At</strong>
-                        </td>
-                    </thead>
-                    <% wiki.forEach((wiki) => { %>
-                        <% if (currentUser.role === 0) {
-            if (wiki.private === false) { %>
-                            <li class="list-group-item">
-
-                                <td>
-                                    <a href="/wikis/<%= wiki.id %>">
-                                        <%= wiki.title %>
-                                    </a>
-                                </td>
-                                <td>
-                                    <%= wiki.createdAt %>
-                                </td>
-                                <% if(currentUser.id === wiki.userId) { %>
-                                    <td>
-                                        <strong>U Made Dis 1</strong>
-                                    </td>
-                                    <% } %>
-                            </li>
-                            <% } %>
-                                <% } else { %>
-                                    <tr>
-                                        <td>
-                                            <a href="/wikis/<%= wiki.id %>">
-                                                <%= wiki.title %>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <%= wiki.createdAt %>
-                                        </td>
-                                        <% if(currentUser.id === wiki.userId) { %>
-                                            <td>
-                                                <strong> <= U Made Dis Wiki</strong>
-                                            </td>
-                                            <% } %>
-                                    </tr>
-                                    <% }}) %>
-                </table>
-
-            </ul>
+            <td class="created-by">
+              <strong><%= currentUser.username %></strong>
+            </td>
+          </tr>
+          <% }}) %>
+        </table>
+      </ul>
+    </div>               
     </main>
     <% include ../static/partials/baseScripts.ejs %>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,16 @@
+.add-new-wiki {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.wiki-container {
+    margin-top: 50px;
+}
+
+.table-head {
+    font-size: 25px;
+}
+
+.created-by {
+    text-align: center;
+}

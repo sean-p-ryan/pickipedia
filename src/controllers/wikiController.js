@@ -2,6 +2,7 @@ const wikiQueries = require("../db/queries.wikis.js");
 const collaboratorQueries = require("../db/queries.collaborator.js");
 const userQueries = require("../db/queries.users.js");
 const markdown = require("markdown").markdown;
+const moment = require("moment");
 
 module.exports = {
 
