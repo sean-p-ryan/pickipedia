@@ -4,13 +4,13 @@ Pickipedia is a Wikipedia'-style application intended to archive the the people,
 
 Hosted on Heroku at: https://sean-p--ryan-blocipedia.herokuapp.com/
 
-## Getting Started
-
 ### Prerequisites
 Be sure to have Node.js and Git installed on your machine. 
 
 ### Installing
 After cloning into a local copy of the repo, run `npm install` to install dependencies. Run `npm install -g nodemon` to install Nodemon globally, then run the `nodemon` command to launch the application on localhost:3000 and automatically refresh the browser when server-side changes are saved. 
+
+Run `pg_ctl -D /usr/local/var/postgres start` to start the database connection.
 
 ## Server
 Node and Express perform route handling, static file rendering, and assist with database modeling and querying. 

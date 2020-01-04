@@ -3,14 +3,44 @@
     margin-bottom: 20px;
 }
 
-.wiki-container {
-    margin-top: 50px;
+.wiki-submit {
+    margin-top: 1rem;
 }
 
-.table-head {
-    font-size: 25px;
+.wiki-header {
+    margin-bottom: 5px;
+}
+
+.wiki-container {
+    margin: 50px 0 50px 0;
+    
+}
+
+.wiki-body {
+    min-height: 300px;
+    width: 100%;
+    border: 1px solid gray !important;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 5px;
 }
 
 .created-by {
     text-align: center;
+}
+
+.collaborator-search-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.collaborator-search-form-input {
+    width: 300px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.collaborator-search {
+    width: 500px;
+    margin: 100px auto;
 }

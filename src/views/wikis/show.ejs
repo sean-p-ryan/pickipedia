@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <% include ../static/partials/head.ejs %>
-</head>
+  </head>
 
-<body>    
+  <body>
+    <main class="container">
+      <% include ../static/partials/navbar.ejs %>
+      <div class="wiki-header">
+        <h1 class="header-text">
+          <%= wiki.title %>
+        </h1>
+        Created on <%= moment(wiki.createdAt).format('MMMM DD, YYYY'); %>. <%
+        if(currentUser.id === wiki.userId) { %>        
+          <strong> You are the owner of this wiki.</strong>        
+        <% } %>
+      </div>
 
-        <main class="container">
-                <% include ../static/partials/navbar.ejs %>
-            <h1>
-                <%= wiki.title %>
-            </h1>
+      <div class="wiki-body">
+        <%- wiki.body %>
+      </div>
 
-            <%- wiki.body %>
+      <form style="display:initial" action="/wikis/:id/destroy" method="post">
+        <a href="/wikis/<%= wiki.id %>/edit" , class="btn btn-warning">Edit</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </main>
 
-                <form style="display:initial" action="/wikis/:id/destroy" method="post">
-                    <a href="/wikis/<%= wiki.id %>/edit" , class="btn btn-warning">Edit</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-
-        </main>
-
-        <% include ../static/partials/baseScripts.ejs %>
-
-</body>
-
+    <% include ../static/partials/baseScripts.ejs %>
+  </body>
 </html>

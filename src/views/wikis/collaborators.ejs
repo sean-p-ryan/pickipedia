@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <% include ../static/partials/head.ejs %>
-</head>
+  </head>
 
-<body>    
-        <main class="container">
-                <% include ../static/partials/navbar.ejs %>
-            <h1>Add collaborators</h1>
+  <body>
+    <main class="container">
+      <% include ../static/partials/navbar.ejs %>
+      <div class="collaborator-search">
+      <h1 class="header-text">Add collaborators</h1>
 
-            <form action="/wikis/<%= wikiId %>/collaborator/results" method="post">
-                <input type="text" name="username" placeholder="Search for a collaborator by username">
-                <button type="submit">Search for This User</button>
-            </form>
+      <form
+        class="collaborator-search-form"
+        action="/wikis/<%= wikiId %>/collaborator/results"
+        method="post"
+      >
+        <input
+          class="collaborator-search-form-input"
+          type="text"
+          name="username"
+          placeholder="Search for a collaborator by username"
+        />
+        <button class="button-positive" type="submit">Search</button>
+      </form>
+    </div>
 
-        </main>
+    </main>
 
-        <% include ../static/partials/baseScripts.ejs %>
-
-</body>
-
+    <% include ../static/partials/baseScripts.ejs %>
+  </body>
 </html>
