@@ -11,8 +11,9 @@
             <% include ../static/partials/navbar.ejs %>
             <% include ../static/partials/messages.ejs %>
 
-                <h4>Create a new wiki</h4>
+                <h4 class="header-text">Create a new wiki</h4>
 
+                    <div class="form-container">
                 <form action="/wikis/create" method="post">
                     <div class="form-group">
                         <label for="title">Wiki title</label>
@@ -20,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="body">Body</label>
-                        <textarea rows="30" height="300" class="form-control" name="body" placeholder="Enter Body"></textarea>
+                        <textarea rows="30" height="300" class="form-control wiki-edit-body" name="body" placeholder="Enter Body"></textarea>
                     </div>
                     <% if (currentUser.role > 0) { %>
                         <label for="private">Would you like to make this wiki private?</label>
@@ -31,6 +32,7 @@
                         <% } %>
                             <button type="submit" class="btn wiki-submit btn-primary">Submit</button>
                 </form>
+            </div>
         </main>
         <% include ../static/partials/baseScripts.ejs %>
 
