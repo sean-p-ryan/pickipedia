@@ -5,7 +5,6 @@ const Authorizer = require("../policies/wiki");
 module.exports = {
 
     getWiki(id, callback) {
-
         return Wiki.findById(id)
             .then((wiki) => {
                 callback(null, wiki)
@@ -13,6 +12,23 @@ module.exports = {
             .catch((err) => {
                 callback(err);
             })
+    },
+
+    getWikisByUserId(id, callback) {
+        console.log("In wiki queries getWikisByUserId fxn") 
+        return Wiki.findAll({
+            where: {
+                userId: id
+            }
+        })
+        .then((wiki) => {
+            console.log("In wiki queries getWikisByUserId fxn, then block")
+            callback(null, wiki)
+        })
+        .catch((err) => {
+            console.log("In wiki queries getWikisByUserId fxn, catch block")
+            callback(err);
+        })
     },
 
     getAllWikis(callback) {

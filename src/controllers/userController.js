@@ -1,4 +1,5 @@
 const userQueries = require("../db/queries.users.js");
+const wikiQueries = require("../db/queries.wikis.js");
 const passport = require("passport");
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -10,23 +11,19 @@ module.exports = {
     sign_up(req, res, next) {
         res.render("users/sign_up");
     },
-    create(req, res, next) {
-        //#1
+    create(req, res, next) {        
         let newUser = {
             username: req.body.username,
             email: req.body.email,
             password: req.body.password,
             passwordConfirmation: req.body.passwordConfirmation
-        };
-        // #2
+        };        
         userQueries.createUser(newUser, (err, user) => {
             if (err) {
                 console.log("Error inside userQueries.createUser " + err);
                 req.flash("error", err);
                 res.redirect("/users/sign_up");
             } else {
-
-                // #3
                 passport.authenticate("local")(req, res, () => {
                     req.flash("notice", "You've successfully signed in!");
                     res.redirect("/");
@@ -72,16 +69,33 @@ module.exports = {
     },
 
     show(req, res, next) {
-        userQueries.getUser(req.params.id, (err, currentUser) => {
-
-            if (err || currentUser == null) {
+        let wikiData;
+        wikiQueries.getWikisByUserId(req.params.id, (err, wikis) => {
+            console.log("In userController getWikisByUserId fxn")
+            if (err) {
+                console.log("In userController getWikisByUserId fxn, error block")
+                console.log(err)
                 res.redirect(404, "/")
             } else {
+                console.log("In userController getWikisByUserId fxn, else block")
+                wikiData = wikis;
+                console.log("In userController getWikisByUserId fxn, else block, here are the wikis " + wikiData)
+                // next();
+            }
+        });
+        userQueries.getUser(req.params.id, (err, currentUser) => {
+            console.log("In userController userQueries.getUser fxn")
+            if (err || currentUser == null) {
+                console.log(err)
+                res.redirect(404, "/")                
+            } else {
+                console.log("In userController userQueries.getUser fxn, else block")
                 res.render("users/show", { currentUser });
             }
         });
     },
     search(req, res, next) {
+        console.log("in search")
         userQueries.searchByUsername(req.body.username, (err, users) => {
             console.log("Here are the params " + req.params)
             if (err || users == null) {

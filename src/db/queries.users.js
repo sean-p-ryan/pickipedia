@@ -24,11 +24,13 @@ module.exports = {
     },
 
     getUser(id, callback) {
+        console.log("In user queries getUser fxn")
         return User.findById(id)
             .then((user) => {
                 callback(null, user)
             })
             .catch((err) => {
+                console.log(err)
                 callback(err);
             })
     },

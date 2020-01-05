@@ -6,16 +6,18 @@
 </head>
 
 <body>
-
-    <% include ../static/partials/navbar.ejs %>
+    
 
     <main class="container">
+        <% include ../static/partials/navbar.ejs %>
 
         <% include ../static/partials/messages.ejs %>
 
 
-        <h2>Premium access to Pikipedia is amazing.<h2>
-
+        <div class="account-change-message">
+        <h2 class="header-text">Premium access to Pikipedia is amazing.<h2>
+        <p>As a premium member, you'll get to create private wikis that only other premium members can see, and invite other users (basic or private) to collaborate on your wikis.</p>
+        <p><em>Psst... we're only playing around here, so of course you don't need to hand over any real money dollars to do this. After you click the button below, enter 4242 4242 4242 4242 as your credit card number, along with any expiration date and CSV code.</em></p>
                 <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="pk_test_AnpHMv7251yNu7ZzRF0oomDN00MYtEdRcf" 
@@ -25,7 +27,7 @@
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto">
                         </script>
                 </form>
-
+            </div>
 
     </main>
 

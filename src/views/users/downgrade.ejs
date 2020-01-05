@@ -5,21 +5,24 @@
     <% include ../static/partials/head.ejs %>
 </head>
 
-<body>
-
-    <% include ../static/partials/navbar.ejs %>
+<body>    
 
     <main class="container">
+        <% include ../static/partials/navbar.ejs %>
 
         <% include ../static/partials/messages.ejs %>
 
-        <h1>Downgrade</h1>
+        <div class="account-change-message">
+        <h1 class="header-text">Downgrade to a basic account</h1>
 
-        <h2>Don't want premium Pikipedia anymore? Ain't no thang. (Just know that all of the private wikis you created
-            will become public if you downgrade.<h2>
+        <p>You have decided that premium Pickipedia just isn't for you, and that is completely fine and okay. Just know that all of the private wikis you created
+            when you were a premium person will become public when your downgrade is confirmed.</p>
+        <p>Even as a basic member, you will be able to create and edit public wikis. We hope that you will continue to use and enjoy Pickipedia, regardless of your user status.</p>
+        <p>We still love you very much.</p>
                 <form action="/users/<%=currentUser.id%>/downgrade" method="POST">
-                    <button type="submit" class="btn btn-danger">Downgrade</button>
+                    <button type="submit" class="button-negative">Downgrade</button>
                 </form>
+        </div>
 
     </main>
 

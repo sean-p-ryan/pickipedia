@@ -10,7 +10,9 @@ var home = document.querySelector(".home")
 
 var path = window.location.pathname;
 
-if (path.includes("sign_up")) {
+if (path.includes === "/"){
+    newActive = home;
+} else if (path.includes("sign_up")) {
     newActive = signUp;
 } else if (path.includes("sign_in")) {
     newActive = signIn;
@@ -22,7 +24,7 @@ if (path.includes("sign_up")) {
     newActive = profile;
 }
 
-active.classList.remove("active");
 newActive.classList.add("active");
+active.classList.remove("active");
 
 

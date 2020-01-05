@@ -9,9 +9,13 @@
         <main class="container">
                 <% include ../static/partials/navbar.ejs %>
             <% include ../static/partials/messages.ejs %>
+            <div class="profile-container">
+                <div class="profile-info-left">
                 <h1 class="header-text">
                     <%= `Hey there, ${currentUser.username}!` %>
                 </h1>
+            </div>
+                <div class="profile-info-right">
                 <% if (currentUser.role === 0) { %>
                     <p>Account level: Basic</p>                
                         <form action="/users/<%=currentUser.id%>/upgrade_form" method="GET">
@@ -20,14 +24,15 @@
                 </button>
                         </form>
                     </p>
-                    <% } else if (currentUser.role === 1) { %>
-                        <%= currentUser.username %>
+                    <% } else if (currentUser.role === 1) { %>                        
                         <p>Account level: Premium</p>    
                             <form action="/users/<%=currentUser.id%>/downgrade_form" method="GET">
                                 <button id="upgradeButton" class="button-negative">
-                    Click to downgrade account
+                    Click to downgrade
                 </button>
                         <% } %>
+                    </div>
+                </div>
         </main>
         <% include ../static/partials/baseScripts.ejs %>
 </body>

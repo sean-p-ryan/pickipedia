@@ -11,8 +11,7 @@ module.exports = {
     results(req, res, next) {
         let collaboratorData = {};
         collaboratorData.wiki = { id: req.params.wikiId }
-        let username = req.body.username;
-        console.log("Should be wiki id " + collaboratorData.wiki.id)
+        let username = req.body.username;        
         userQueries.searchByUsername(username, (err, user) => {
             if (err || user == null) {
                 res.redirect(404, "/")

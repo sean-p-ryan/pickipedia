@@ -1,8 +1,10 @@
-
+p {
+    font-size: 18px;
+    line-height: normal;
+}
 
 .container {
     margin: 2rem auto 0 auto !important;
-
 }
 
 .header-text {

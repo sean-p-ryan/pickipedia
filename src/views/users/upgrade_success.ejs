@@ -9,11 +9,14 @@
     <main class="container">
       <% include ../static/partials/messages.ejs %>
 
+      <div class="account-change-message">
       <p>
         You have successfully upgrated to a premium Pickipedia account. You can
         now create private wikis visible only to other premium members, and
         invite other members to collaborate on your wikis.
       </p>
+      <a href="/users/<%= currentUser.id %>"><button class="">Back to my profile</button></a>
+    </div>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
