@@ -21,6 +21,7 @@
                         </form>
                     </p>
                     <% } else if (currentUser.role === 1) { %>
+                        <%= currentUser.username %>
                         <p>Account level: Premium</p>    
                             <form action="/users/<%=currentUser.id%>/downgrade_form" method="GET">
                                 <button id="upgradeButton" class="button-negative">
