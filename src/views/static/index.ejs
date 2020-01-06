@@ -11,23 +11,19 @@
     <main class="container">
       <% include ./partials/navbar.ejs %> <% include ./partials/messages.ejs %>
 
-      <div
-        class="flip-card card"
-        ontouchstart="this.classList.toggle('hover');"
-      >
+      <div class="home-hero">
         <div class="flip-card-inner">
-          <div class="flip-card-inner-front">
-            <span>PICKIPEDIA</span>
+          <div class="homepage-description">
+            <h4>Welcome to Pickipedia!</h4>
           </div>
-          <div class="flip-card-inner-back">
-            <h3 class="flip-card-inner-back-title">
-              THE GREATEST 'PEDIA OF THEM ALL
-            </h3>
-            <p class="flip-card-inner-back-text">
-              Chronicling live roots and Americana music in New York City.
-            </p>            
-          </div>
+          <div class="flip-card-inner-front"></div>
+          <p>
+            An open source encyclopedia for chronicling the shows, bands, and
+            people who comprise the live roots and Americana music scene in New
+            York City.
+          </p>
         </div>
+
       </div>
     </main>
     <!-- /.container -->
